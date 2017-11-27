@@ -27,18 +27,12 @@ def scatter_plot(coords,convex_hull=None):
 		plt.plot((last[0],first[0]),(last[1],first[1]),'r')
 	plt.show() # show the plot
 
-# Returns a list of unique (x,y) coordinates of length 'num_points',
+
+# Returns a list of (x,y) coordinates of length 'num_points',
 # each x and y coordinate is chosen randomly from the range 
 # 'min' up to 'max'.
 def create_points(num_points,min=0,max=50):
-	pts=[]
-	for _ in range(num_points):
-		while True:
-			x,y=randint(min,max),randint(min,max)
-			if [x,y] not in pts:
-				pts.append([x,y])
-				break
-	return pts
+	return [[randint(min,max),randint(min,max)] for _ in range(num_points)]
 
 # Returns the polar angle (radians) from p0 to p1.
 # p0 is assumed to be the point with the lowest y coordinate.
@@ -131,7 +125,7 @@ def graham_scan(points,show_progress=False):
 		if show_progress: scatter_plot(points,hull)
 	return hull 
 
-pts=create_points(500,0,50)
+pts=create_points(10,0,500)
 print "points:",pts
 hull=graham_scan(pts,False)
 print "hull:",hull
