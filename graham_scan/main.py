@@ -79,7 +79,7 @@ def quicksort(a):
 # If >0 then counter-clockwise
 # If <0 then clockwise
 # If =0 then collinear
-def determinant(p1,p2,p3):
+def det(p1,p2,p3):
 	return (p2[0]-p1[0])*(p3[1]-p1[1])-(p2[1]-p1[1])*(p3[0]-p1[0])
 
 
@@ -116,10 +116,10 @@ def graham_scan(points,show_progress=False):
 
 	# iterate over points in increasing polar angle
 	for s in sorted_pts[1:]:
-		if determinant(hull[-2],hull[-1],s)>0: # counter clockwise
+		if det(hull[-2],hull[-1],s)>0: # counter clockwise
 			hull.append(s)
-		else: # clockwise
-			while determinant(hull[-2],hull[-1],s)<=0:
+		else: # clockwise or linear
+			while det(hull[-2],hull[-1],s)<=0:
 				del hull[-1]
 				if len(hull)<2: break
 			hull.append(s)
@@ -142,12 +142,12 @@ def benchmark(sizes=[10,100,1000,10000,100000]):
 			t0=time()
 			hull=graham_scan(pts,False)
 			tot+=(time()-t0)
-		print "size %d time: %0.5f"%(s,tot/5.0)
+		print "size %d time: %0.5f"%(s,tot/3.0)
 
-'''
+#'''
 benchmark()
 #'''
-#'''
+'''
 pts=create_points(10,0,500)
 print "points:",pts
 hull=graham_scan(pts,False)
