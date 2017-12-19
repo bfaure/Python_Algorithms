@@ -116,7 +116,7 @@ def graham_scan(points,show_progress=False):
 	for s in sorted_pts[1:]:
 		while det(hull[-2],hull[-1],s)<=0:
 			del hull[-1] # backtrack
-			if len(hull)<2: break
+			#if len(hull)<2: break
 		hull.append(s)
 		if show_progress: scatter_plot(points,hull)
 	return hull
