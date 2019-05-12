@@ -5,7 +5,7 @@ def binary_search(a,value):
 	mid=a[len(a)//2]
 	if value==mid: return True 
 	if value<mid:  return binary_search(a[:len(a)//2],value)
-	if value>mid:  return binary_search(a[len(a)//2+1:],value)
+	if value>mid:  return binary_search(a[len(a)//2:],value)
 
 
 a=[1,2,3,4,5,6,7,8,9]
